@@ -1,5 +1,8 @@
 package com.gbvp.deviceuniqueid;
 
+import android.annotation.SuppressLint;
+import android.provider.Settings.Secure;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -8,15 +11,14 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 @CapacitorPlugin(name = "DeviceUniqueId")
 public class DeviceUniqueIdPlugin extends Plugin {
-
-    private DeviceUniqueId implementation = new DeviceUniqueId();
-
+    
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    @SuppressLint("HardwareIds")
+    public void getAndroidUID(final PluginCall call) {
+        String uid = Secure.getString(getContext().getContentResolver(), Secure.ANDROID_ID);
 
         JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
+        ret.put("identifier", uid);
         call.resolve(ret);
     }
 }

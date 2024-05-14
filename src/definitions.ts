@@ -1,3 +1,8 @@
+export interface UniqueIdentifier {
+  identifier: string
+}
+
 export interface DeviceUniqueIdPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  getAndroidUID(): Promise<UniqueIdentifier>;
+  getIosUID(): Promise<UniqueIdentifier>;
 }

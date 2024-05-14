@@ -1,10 +1,17 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { DeviceUniqueIdPlugin } from './definitions';
+import type { DeviceUniqueIdPlugin, UniqueIdentifier } from './definitions';
 
 export class DeviceUniqueIdWeb extends WebPlugin implements DeviceUniqueIdPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  async getAndroidUID(): Promise<UniqueIdentifier> {
+    return {
+      identifier: 'android-id'
+    };
+  }
+
+  async getIosUID(): Promise<UniqueIdentifier> {
+    return {
+      identifier: 'android-id'
+    };
   }
 }
