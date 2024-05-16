@@ -14,7 +14,7 @@ public class DeviceUniqueIdPlugin extends Plugin {
     
     @PluginMethod
     @SuppressLint("HardwareIds")
-    public void getAndroidUID(final PluginCall call) {
+    public void getDeviceUID(final PluginCall call) {
         String uid = Secure.getString(getContext().getContentResolver(), Secure.ANDROID_ID);
 
         JSObject ret = new JSObject();

@@ -3,6 +3,5 @@ export interface UniqueIdentifier {
 }
 
 export interface DeviceUniqueIdPlugin {
-  getAndroidUID(): Promise<UniqueIdentifier>;
-  getIosUID(): Promise<UniqueIdentifier>;
+  getDeviceUID(): Promise<UniqueIdentifier>;
 }

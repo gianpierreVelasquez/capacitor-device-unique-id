@@ -7,12 +7,14 @@ import Capacitor
  */
 @objc(DeviceUniqueIdPlugin)
 public class DeviceUniqueIdPlugin: CAPPlugin {
-    private let implementation = DeviceUniqueId()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func getDeviceUID(_ call: CAPPluginCall) {
+        if let uid = UIDevice.current.identifierForVendor {
+            call.resolve([
+                "identifier": uid.uuidString
+            ])
+        } else {
+            call.reject("Id not available")
+        }
     }
 }
